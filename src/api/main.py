@@ -7,11 +7,14 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import threading
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from sqlalchemy import text
+from sqlalchemy.exc import OperationalError
 
 from config.settings import ROOT, get_settings
 from src.api.routes import analytics, chat, companies, posts, refresh
@@ -46,6 +49,23 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
+_SECRET_IN_URL = re.compile(r"(\w+://)[^\s/@]+@")
+
+
+@app.exception_handler(Exception)
+async def explain_failure(_: Request, exc: Exception) -> JSONResponse:
+    """Say what failed (database not configured, unreachable, ...) instead of a bare 500.
+
+    Only the error type and a short, credential-scrubbed message are returned; the full
+    traceback goes to the server log.
+    """
+    log.exception("unhandled error")
+    message = _SECRET_IN_URL.sub(r"\1***@", str(exc).splitlines()[0] if str(exc) else "")[:200]
+    if isinstance(exc, OperationalError):
+        message = "cannot connect to the database. Check DATABASE_URL and that the database is running."
+    return JSONResponse(status_code=500, content={"detail": f"{type(exc).__name__}: {message}"})
+
+
 app.include_router(companies.router)
 app.include_router(analytics.router)
 app.include_router(posts.router)

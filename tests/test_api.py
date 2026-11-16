@@ -169,3 +169,22 @@ def test_refresh_token_is_enforced_when_set(refresh_env):
     assert client.post("/refresh").status_code == 403
     assert client.post("/refresh", headers={"X-Refresh-Token": "wrong"}).status_code == 403
     assert client.post("/refresh", headers={"X-Refresh-Token": "s3cret"}).status_code == 202
+
+
+# ----------------------------------------------------------------- error replies
+
+def test_failures_say_what_broke_without_leaking_credentials(monkeypatch):
+    from sqlalchemy.exc import OperationalError
+    quiet = TestClient(app, raise_server_exceptions=False)
+
+    def leaky(conn, f):
+        raise RuntimeError("could not use postgresql://admin:hunter2@db.example.com/prod")
+    monkeypatch.setattr(metrics, "overview", leaky)
+    body = quiet.get("/analytics/VEON/topics").json()
+    assert body["detail"].startswith("RuntimeError:") and "hunter2" not in body["detail"]
+
+    def down(conn, f):
+        raise OperationalError("SELECT 1", {}, Exception("connection refused"))
+    monkeypatch.setattr(metrics, "overview", down)
+    body = quiet.get("/analytics/VEON/topics").json()
+    assert "cannot connect to the database" in body["detail"]
