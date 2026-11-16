@@ -1,0 +1,7 @@
+# Optional: the FinBERT sentiment baseline (used to measure and as a fallback).
+# Install PyTorch CPU first to avoid the multi-GB CUDA build:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements-ml.txt
+-r requirements.txt
+torch>=2.3
+transformers>=4.44

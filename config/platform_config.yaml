@@ -1,0 +1,25 @@
+# Collection limits per platform. Kept small: the MVP does bounded, polite collection.
+
+defaults:
+  timeout_seconds: 20
+  max_retries: 4
+  backoff_base_seconds: 1.0
+  backoff_max_seconds: 30
+  lookback_days: 90        # first run: historical window (a company can override this)
+  overlap_hours: 6         # later runs: re-read this far before the last checkpoint
+
+reddit:
+  page_size: 25
+  max_pages_per_query: 2
+  comments_for_top_n_posts: 3   # fetch top-level comments for the N most-commented posts per page
+  comments_per_post: 15
+
+youtube:
+  page_size: 10                 # one search page costs 100 quota units
+  max_pages_per_query: 1
+  comment_videos_per_page: 5    # each commentThreads call costs 1 unit
+  comments_per_video: 20
+
+bluesky:
+  page_size: 25
+  max_pages_per_query: 2

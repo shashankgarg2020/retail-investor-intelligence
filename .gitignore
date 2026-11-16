@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/raw/
+data/processed/
+*.log
+.streamlit/secrets.toml
+.cache/
+.ruff_cache/
+*.egg-info/

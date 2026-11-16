@@ -1,0 +1,83 @@
+# Predefined topic taxonomy (docs/blueprint.md §8.3: stable categories for reporting).
+# A post gets the topic with the most keyword hits; ties and no-hit cases are
+# resolved by embedding similarity between the post and the topic description.
+# "other" is assigned when nothing clears the similarity threshold.
+
+shared:
+  earnings_results:
+    label: Earnings and financial results
+    description: Quarterly or annual results, revenue, profit, earnings per share, guidance and whether the company beat or missed expectations.
+    keywords: [earnings, results, revenue, profit, EPS, guidance, beat, miss, quarter, quarterly, Q1, Q2, Q3, Q4, EBITDA, outlook, forecast]
+  valuation_share_price:
+    label: Valuation and share price
+    description: Share price moves, valuation multiples, price targets, whether the stock is cheap or expensive, buying or selling the shares.
+    keywords: [valuation, undervalued, overvalued, buying opportunity, buy the dip, dropped, price target, P/E, multiple, market cap, cheap, expensive, share price, stock price, all-time high, dip, rally, selloff]
+  debt_balance_sheet:
+    label: Debt and balance sheet
+    description: Debt levels, leverage, refinancing, bonds, liquidity, cash position and balance sheet strength.
+    keywords: [debt, leverage, refinancing, refinance, bond, bonds, liquidity, balance sheet, net debt, maturity, maturities, cash position, solvency, bankrupt, bankruptcy]
+  shareholder_returns:
+    label: Dividends and buybacks
+    description: Dividends, share buybacks, capital returns to shareholders.
+    keywords: [dividend, dividends, buyback, buybacks, repurchase, capital return, yield, payout]
+  management_governance:
+    label: Management and governance
+    description: The CEO, executives, board decisions, management credibility, insider transactions and corporate governance.
+    keywords: [CEO, CFO, management, board, executive, executives, insider, governance, leadership, chairman]
+  regulation_legal:
+    label: Regulation and legal
+    description: Regulators, lawsuits, fines, investigations, compliance, licences and legal disputes.
+    keywords: [regulator, regulation, regulatory, lawsuit, fine, fined, investigation, compliance, licence, license, court, legal, sanctions]
+  strategy_growth:
+    label: Strategy and growth
+    description: Growth plans, acquisitions, disposals, new markets, partnerships and long-term strategy.
+    keywords: [strategy, acquisition, acquire, merger, takeover, disposal, spin-off, spinoff, partnership, expansion, growth, pipeline]
+  competition:
+    label: Competition
+    description: Competitors, market share and competitive position.
+    keywords: [competitor, competitors, competition, market share, rival, rivals]
+
+companies:
+  VEON:
+    ukraine_kyivstar:
+      label: Ukraine and Kyivstar
+      description: Kyivstar, the Ukraine business, its separate listing, war-related risk and geopolitical exposure.
+      keywords: [Kyivstar, Ukraine, Ukrainian, war, geopolitical, KYIV]
+    emerging_markets_operations:
+      label: Operating markets
+      description: Operations in Pakistan, Bangladesh, Kazakhstan and Uzbekistan, currency devaluation and country risk.
+      keywords: [Pakistan, Jazz, Bangladesh, Banglalink, Kazakhstan, Uzbekistan, Beeline, currency, devaluation, rupee]
+    network_digital_services:
+      label: Network and digital services
+      description: Mobile network, 4G rollout, subscribers, towers, fintech and digital services such as JazzCash.
+      keywords: [4G, 5G, network, subscribers, towers, spectrum, digital, fintech, JazzCash, Starlink, satellite]
+  STB:
+    credit_quality:
+      label: Credit quality and impairments
+      description: Loan impairments, arrears, bad debts, cost of risk and the quality of the loan book.
+      keywords: [impairment, impairments, arrears, bad debt, cost of risk, defaults, provisions, loan book, credit quality]
+    motor_finance_redress:
+      label: Motor finance and FCA redress
+      description: The FCA motor finance commission review, redress provisions and the vehicle finance business including Moneyway.
+      keywords: [motor finance, vehicle finance, car finance, FCA, redress, commission, Moneyway, compensation]
+    deposits_margin:
+      label: Deposits, savings and margin
+      description: Savings accounts, deposit rates, funding costs, net interest margin and lending growth.
+      keywords: [deposits, savings, savings account, ISA, interest rate, net interest margin, NIM, funding, lending growth, retail finance, V12]
+  TTWO:
+    gta_vi:
+      label: GTA VI
+      description: Grand Theft Auto VI release date, delays, trailers, expected sales and its importance to Take-Two's financial results.
+      keywords: [GTA VI, GTA 6, GTA6, Grand Theft Auto, trailer, delay, delayed, release date]
+    game_pipeline:
+      label: Game pipeline and releases
+      description: Other game releases and franchises such as NBA 2K, Borderlands, Red Dead Redemption, Civilization and mobile titles from Zynga.
+      keywords: [NBA 2K, Borderlands, Red Dead, Civilization, Mafia, Zynga, mobile, release slate, launch]
+    bookings_monetisation:
+      label: Bookings and monetisation
+      description: Net bookings, recurrent consumer spending, microtransactions, pricing of games and monetisation.
+      keywords: [bookings, net bookings, recurrent consumer spending, microtransactions, monetisation, monetization, pricing, $70, $80, $100, Shark Cards]
+    development_costs:
+      label: Development costs and layoffs
+      description: Game development budgets, costs, studio closures and layoffs.
+      keywords: [development cost, budget, layoffs, layoff, studio closure, cost cutting, impairment]

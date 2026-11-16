@@ -1,0 +1,308 @@
+# Company configuration and entity-resolution vocabulary.
+#
+# strong_terms   Unambiguous identifiers. A match alone makes a post company-relevant.
+# weak_terms     Products, subsidiaries or ambiguous tokens. Need supporting context.
+# context_terms  Company or industry words that support a weak match.
+# strong_terms_exact_case
+#                Identifiers that are only unambiguous in one spelling ("VEON" the company
+#                versus "Veon"/"veon" as a name, a pet character or a music project).
+# negative_terms Disambiguators. With only weak matches these make a post irrelevant; with a
+#                strong match but no investor vocabulary they send it to the LLM check.
+# aspects        Business aspects for aspect-based sentiment (docs/blueprint.md §8.2).
+# search_queries High-recall candidate retrieval queries sent to each platform.
+#
+# Matching is case-insensitive on word boundaries unless stated. Terms starting with "$" are cashtags.
+
+companies:
+  VEON:
+    name: VEON Ltd.
+    exchange: NASDAQ
+    industry: Telecommunications
+    aliases: [VEON, VEON Ltd, VEON Group]
+    strong_terms:
+      - $VEON
+      - VEON Ltd
+      - VEON Group
+    strong_terms_exact_case:
+      - VEON
+    weak_terms:
+      - Veon
+      - Kyivstar
+      - Jazz Pakistan
+      - JazzCash
+      - Banglalink
+      - Beeline Kazakhstan
+      - Beeline Uzbekistan
+      - Beeline
+    context_terms:
+      - telecom
+      - telecoms
+      - telecommunications
+      - telco
+      - mobile operator
+      - operator
+      - subscribers
+      - customers
+      - 4G
+      - 5G
+      - spectrum
+      - towers
+      - satellite
+      - Starlink
+      - Ukraine
+      - Uzbekistan
+      - Pakistan
+      - Bangladesh
+      - Kazakhstan
+      - Kaan Terzioglu
+      - parent company
+    # Seen in collected data: NFL player Le'Veon Bell, a fan-made creature called a "veon",
+    # a melodic-techno project called VEON, and a Pennsylvania politician named Veon.
+    negative_terms:
+      - Le'Veon
+      - Le’Veon
+      - LeVeon
+      - Steelers
+      - Jets
+      - NFL
+      - running back
+      - Antonio Brown
+      - Tomlin
+      - furry
+      - mascot
+      - plush
+      - cute
+      - snuggly
+      - alcremie
+      - Melodic Techno
+      - MelodicTechno
+      - ElectronicMusic
+      - DeWeese
+    aspects:
+      revenue_growth: Revenue and growth
+      debt: Debt and leverage
+      network_expansion: Network and digital services
+      subscribers: Subscribers and customers
+      regulation_geopolitics: Regulation and geopolitics
+      management: Management
+      valuation: Valuation and share price
+    search_queries:
+      - VEON stock
+      - VEON earnings
+      - VEON Ltd
+      - $VEON
+      - VEON Kyivstar
+
+  STB:
+    name: Secure Trust Bank PLC
+    exchange: LSE
+    industry: Banking
+    # Small-cap with little social discussion: a live check found no Bluesky posts
+    # in 30 days and about 20 in a year, so the first collection reaches back further.
+    lookback_days: 365
+    aliases: [Secure Trust Bank, Secure Trust Bank PLC, STB.L]
+    strong_terms:
+      - Secure Trust Bank
+      - Secure Trust Bank PLC
+      - STB.L
+      - LON:STB
+      - LSE:STB
+    # Bare "STB" is ambiguous: set-top box, Sacombank (HOSE: STB), and others.
+    weak_terms:
+      - STB
+      - $STB
+      - V12 Retail Finance
+      - Moneyway
+    context_terms:
+      - bank
+      - lender
+      - lending
+      - loan book
+      - deposits
+      - savings
+      - motor finance
+      - vehicle finance
+      - retail finance
+      - FCA
+      - impairment
+      - net interest margin
+      - FTSE
+      - LSE
+      - London
+      - pence
+      - UK
+    negative_terms:
+      - set-top box
+      - set top box
+      - Sacombank
+      - Saigon Thuong Tin
+      - HOSE
+      - Android TV
+      - IPTV
+      - decoder
+      # "Steal the Brainrot" (STB), a Fortnite/Roblox game whose trading videos flood YouTube.
+      - Steal the Brainrot
+      - stealthebrainrot
+      - brainrot
+      - Fortnite
+      - Roblox
+      - cannon
+      - phishing
+    aspects:
+      asset_quality: Asset quality and impairments
+      lending_growth: Lending growth
+      deposits_funding: Deposits and funding
+      capital_returns: Capital, dividends and buybacks
+      motor_finance: Motor finance and disposals
+      regulation: Regulation
+      management: Management and strategy
+      valuation: Valuation and share price
+    search_queries:
+      # Quoted: unquoted, platform search matches "secure", "trust" and "bank" separately.
+      - '"Secure Trust Bank"'
+      - '"Secure Trust Bank" shares'
+      - '"Secure Trust Bank" results'
+      - STB.L
+      - '"Secure Trust" bank motor finance'
+
+  TTWO:
+    name: Take-Two Interactive Software, Inc.
+    exchange: NASDAQ
+    industry: Video Games
+    aliases: [TTWO, Take-Two, Take Two Interactive, Take-Two Interactive]
+    strong_terms:
+      - TTWO
+      - $TTWO
+      - Take-Two
+      - Take Two Interactive
+      - Take-Two Interactive
+      - TakeTwo
+      - Take2 Interactive
+    # Product and studio names are high recall but mostly gaming chatter, not investor discussion.
+    weak_terms:
+      - GTA VI
+      - GTA 6
+      - GTA6
+      - Grand Theft Auto VI
+      - Grand Theft Auto 6
+      - Rockstar Games
+      - Rockstar
+      - 2K Games
+      - NBA 2K
+      - Zynga
+      - Borderlands 4
+      - GTA Online
+      - GTA 5
+      - GTA V
+      - Red Dead Redemption
+      - Red Dead Redemption 2
+    context_terms:
+      - Zelnick
+      - publisher
+      - parent company
+      - net bookings
+      - bookings
+      - recurrent consumer spending
+      - fiscal
+    negative_terms:
+      - in-game stock market
+      - BAWSAQ
+      - LCN
+    aspects:
+      gta_vi: GTA VI launch
+      release_pipeline: Release schedule and pipeline
+      bookings_sales: Bookings and sales
+      development_costs: Development costs and margins
+      management: Management
+      competition: Competition
+      valuation: Valuation and share price
+    search_queries:
+      - TTWO stock
+      - Take-Two Interactive earnings
+      - $TTWO
+      - Take-Two stock GTA VI
+      - Take-Two Interactive shares
+
+# Business-event vocabulary. A product name next to one of these (sales figures, a delay,
+# a launch date) may be company news, so the post goes to the LLM check instead of being
+# dropped as consumer chatter.
+business_terms:
+  - sold
+  - sales
+  - copies
+  - units
+  - delay
+  - delayed
+  - release date
+  - launch date
+  - launches
+  - pre-orders
+  - preorders
+  - acquisition
+  - acquires
+  - deal
+  - customers
+  - million
+  - billion
+
+# Shared investor vocabulary. Supports weak matches and comment relevance.
+finance_terms:
+  - stock
+  - stocks
+  - shares
+  - shareholder
+  - shareholders
+  - investor
+  - investors
+  - investing
+  - investment
+  - earnings
+  - revenue
+  - profit
+  - profits
+  - losses
+  - margin
+  - margins
+  - guidance
+  - forecast
+  - dividend
+  - dividends
+  - buyback
+  - valuation
+  - undervalued
+  - overvalued
+  - market cap
+  - price target
+  - analyst
+  - analysts
+  - quarter
+  - quarterly
+  - Q1
+  - Q2
+  - Q3
+  - Q4
+  - fiscal
+  - EPS
+  - EBITDA
+  - P/E
+  - debt
+  - leverage
+  - cash flow
+  - balance sheet
+  - bullish
+  - bearish
+  - portfolio
+  - rally
+  - selloff
+  - sell-off
+  - IPO
+  - ticker
+  - NASDAQ
+  - NYSE
+  - LSE
+  - share price
+  - stock price
+  - upside
+  - downside
+  - shorting
+  - short interest

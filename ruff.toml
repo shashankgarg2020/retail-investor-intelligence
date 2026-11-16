@@ -1,0 +1,9 @@
+line-length = 120
+target-version = "py312"
+
+[lint]
+select = ["E9", "F", "I"]
+
+[lint.isort]
+known-first-party = ["config", "scripts", "src"]
+combine-as-imports = true

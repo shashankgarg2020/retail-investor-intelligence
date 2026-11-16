@@ -1,0 +1,16 @@
+# Presentation settings: no Deploy button or developer menu, no stack traces shown to viewers.
+
+[client]
+toolbarMode = "viewer"
+showErrorDetails = "none"
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#2a78d6"
+font = "sans serif"
